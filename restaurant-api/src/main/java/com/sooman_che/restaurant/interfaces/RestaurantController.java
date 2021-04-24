@@ -1,5 +1,7 @@
 package com.sooman_che.restaurant.interfaces;
 
+import com.sooman_che.restaurant.domain.MenuItem;
+import com.sooman_che.restaurant.domain.MenuItemRepository;
 import com.sooman_che.restaurant.domain.Restaurant;
 import com.sooman_che.restaurant.domain.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
@@ -15,16 +17,21 @@ import java.util.List;
 @RequestMapping("/restaurants")
 public class RestaurantController {
 
-    private final RestaurantRepository repository;
+    private final RestaurantRepository restaurantRepository;
+    private final MenuItemRepository menuItemRepository;
 
     @GetMapping("")
     public List<Restaurant> list() {
-        List<Restaurant> restaurants = repository.findAll();
+        List<Restaurant> restaurants = restaurantRepository.findAll();
         return restaurants;
     }
 
     @GetMapping("/{id}")
     public Restaurant detail(@PathVariable Long id) {
-        return repository.findById(id);
+        Restaurant restaurant = restaurantRepository.findById(id);
+
+        List<MenuItem> menuItems = menuItemRepository.findAllByRestaurantId(id);
+        restaurant.setMenuItems(menuItems);
+        return restaurant;
     }
 }
