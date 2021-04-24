@@ -1,6 +1,5 @@
 package com.sooman_che.restaurant.application;
 
-import com.sooman_che.restaurant.MenuItemRepositoryImpl;
 import com.sooman_che.restaurant.domain.*;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -8,8 +7,8 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
-import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.ArgumentMatchers.any;
@@ -47,7 +46,7 @@ class RestaurantServiceTest {
 
         given(restaurantRepository.findAll()).willReturn(restaurants);
 
-        given(restaurantRepository.findById(1004L)).willReturn(restaurants.get(0));
+        given(restaurantRepository.findById(1004L)).willReturn(Optional.ofNullable(restaurants.get(0)));
 
     }
 
