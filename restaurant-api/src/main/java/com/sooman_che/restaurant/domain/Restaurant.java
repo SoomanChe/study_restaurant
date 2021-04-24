@@ -1,24 +1,22 @@
 package com.sooman_che.restaurant.domain;
 
+import lombok.Getter;
+
+@Getter
 public class Restaurant {
 
-    private final String name;
+    private Long id;
+    private String name;
     private String address;
 
-    public Restaurant(final String name, String address) {
+    public Restaurant(final Long id, final String name, final String address) {
+        this.id = id;
         this.name = name;
         this.address = address;
-    }
-
-    public Object getName() {
-        return name;
     }
 
     public String getInformation() {
         return name + " in " + address;
     }
 
-    public String getAddress() {
-        return address;
-    }
 }
