@@ -26,4 +26,9 @@ public class RestaurantService {
         restaurant.setMenuItems(menuItems);
         return restaurant;
     }
+
+    public Restaurant addRestaurant(Restaurant restaurant) {
+        Restaurant saved = restaurantRepository.save(restaurant);
+        return saved;
+    }
 }

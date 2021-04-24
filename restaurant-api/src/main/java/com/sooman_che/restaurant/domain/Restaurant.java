@@ -1,11 +1,13 @@
 package com.sooman_che.restaurant.domain;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 
 import java.util.ArrayList;
 import java.util.List;
 
 @Getter
+@NoArgsConstructor
 public class Restaurant {
 
     private Long id;
@@ -15,6 +17,11 @@ public class Restaurant {
 
     public Restaurant(final Long id, final String name, final String address) {
         this.id = id;
+        this.name = name;
+        this.address = address;
+    }
+
+    public Restaurant(String name, String address) {
         this.name = name;
         this.address = address;
     }
@@ -29,5 +36,9 @@ public class Restaurant {
 
     public void setMenuItems(List<MenuItem> menuItems) {
         this.menuItems.addAll(menuItems);
+    }
+
+    public void setId(long id) {
+        this.id = id;
     }
 }

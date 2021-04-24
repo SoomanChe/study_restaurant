@@ -6,11 +6,11 @@ import com.sooman_che.restaurant.domain.MenuItemRepository;
 import com.sooman_che.restaurant.domain.Restaurant;
 import com.sooman_che.restaurant.domain.RestaurantRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 
+import java.net.URI;
+import java.net.URISyntaxException;
 import java.util.List;
 
 @RestController
@@ -28,5 +28,13 @@ public class RestaurantController {
     @GetMapping("/{id}")
     public Restaurant detail(@PathVariable Long id) {
         return restaurantService.getRestaurant(id);
+    }
+
+    @PostMapping("")
+    public ResponseEntity<?> create(@RequestBody Restaurant request) throws URISyntaxException {
+        Restaurant restaurant = new Restaurant(1234L, request.getName(), request.getAddress());
+        restaurantService.addRestaurant(restaurant);
+        URI location = new URI("/restaurants/" + restaurant.getId());
+        return ResponseEntity.created(location).body("{}");
     }
 }
