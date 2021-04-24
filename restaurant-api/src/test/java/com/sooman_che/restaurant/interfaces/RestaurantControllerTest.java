@@ -1,6 +1,7 @@
 package com.sooman_che.restaurant.interfaces;
 
 import com.sooman_che.restaurant.MenuItemRepositoryImpl;
+import com.sooman_che.restaurant.application.RestaurantService;
 import com.sooman_che.restaurant.domain.MenuItemRepository;
 import com.sooman_che.restaurant.domain.RestaurantRepository;
 import com.sooman_che.restaurant.domain.RestaurantRepositoryImpl;
@@ -19,6 +20,9 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 class RestaurantControllerTest {
     @Autowired
     private MockMvc mvc;
+
+    @SpyBean
+    RestaurantService restaurantService;
 
     @SpyBean(RestaurantRepositoryImpl.class)
     RestaurantRepository restaurantRepository;
